@@ -1,0 +1,95 @@
+<group name="soc_lab,custom_rules">
+
+  <!-- ========================================= -->
+  <!-- SSH BRUTE FORCE DETECTION -->
+  <!-- ========================================= -->
+  <rule id="100001" level="10">
+    <if_sid>5716</if_sid>
+    <match>Failed password</match>
+    <description>SSH brute force attempt detected</description>
+    <group>authentication_failures, brute_force,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- MULTIPLE FAILED LOGINS (AGGREGATION) -->
+  <!-- ========================================= -->
+  <rule id="100002" level="12" frequency="5" timeframe="60">
+    <if_matched_sid>100001</if_matched_sid>
+    <description>Multiple SSH failed login attempts (Brute Force)</description>
+    <group>authentication_failures, brute_force, high_risk,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- SUCCESSFUL LOGIN AFTER FAILURES -->
+  <!-- ========================================= -->
+  <rule id="100003" level="14">
+    <if_sid>5715</if_sid>
+    <match>Accepted password</match>
+    <description>Possible compromised account (login after brute force)</description>
+    <group>authentication_success, account_compromise,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- PRIVILEGE ESCALATION DETECTION -->
+  <!-- ========================================= -->
+  <rule id="100004" level="12">
+    <match>sudo:.*COMMAND=/bin/bash</match>
+    <description>Privilege escalation attempt detected (sudo shell)</description>
+    <group>privilege_escalation,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- SUSPICIOUS USER CREATION -->
+  <!-- ========================================= -->
+  <rule id="100005" level="10">
+    <match>useradd</match>
+    <description>New user account created (possible persistence)</description>
+    <group>persistence, account_management,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- FILE TAMPERING / RANSOMWARE -->
+  <!-- ========================================= -->
+  <rule id="100006" level="13">
+    <match>encrypted</match>
+    <description>Possible ransomware activity (file renaming)</description>
+    <group>ransomware, file_integrity, critical,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- COMMAND & CONTROL (C2) DETECTION -->
+  <!-- ========================================= -->
+  <rule id="100007" level="12">
+    <match>wget http|curl http</match>
+    <description>Possible command and control (C2) communication</description>
+    <group>c2, outbound_connection,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- LOG TAMPERING -->
+  <!-- ========================================= -->
+  <rule id="100008" level="11">
+    <match>history -c</match>
+    <description>Log tampering attempt (history cleared)</description>
+    <group>defense_evasion,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- NMAP SCAN DETECTION -->
+  <!-- ========================================= -->
+  <rule id="100009" level="10">
+    <match>Nmap scan report</match>
+    <description>Network scan detected (Nmap)</description>
+    <group>reconnaissance, network_scan,</group>
+  </rule>
+
+  <!-- ========================================= -->
+  <!-- AGGRESSIVE SCAN DETECTION -->
+  <!-- ========================================= -->
+  <rule id="100010" level="12">
+    <match>Starting Nmap</match>
+    <description>Active reconnaissance detected (Nmap aggressive scan)</description>
+    <group>reconnaissance, high_risk,</group>
+  </rule>
+
+</group>
