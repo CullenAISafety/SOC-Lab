@@ -1,0 +1,2 @@
+sudo mkdir -p /mnt/soc-logs
+sudo mount -t vboxsf soc-logs /mnt/soc-logs
