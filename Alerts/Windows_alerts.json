@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2026-03-23T10:15:00Z",
+    "host": "WIN-SRV01",
+    "alert_id": "100001",
+    "severity": "high",
+    "category": "malware_detection",
+    "description": "Suspicious PowerShell execution detected",
+    "ioc": ["powershell -nop -w hidden", "malicious.ps1"]
+  },
+  {
+    "timestamp": "2026-03-23T10:45:00Z",
+    "host": "WIN-SRV02",
+    "alert_id": "100002",
+    "severity": "medium",
+    "category": "login_anomaly",
+    "description": "Multiple failed RDP login attempts",
+    "ioc": ["192.168.1.101", "5 failed attempts"]
+  }
+]
