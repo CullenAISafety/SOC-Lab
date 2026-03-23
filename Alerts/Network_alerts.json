@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp": "2026-03-23T12:00:00Z",
+    "source_ip": "10.0.0.15",
+    "destination_ip": "192.168.1.50",
+    "alert_id": "300001",
+    "severity": "high",
+    "category": "ddos_attempt",
+    "description": "Multiple SYN packets detected from a single host",
+    "ioc": ["tcp syn flood", "packet count: 5000"]
+  },
+  {
+    "timestamp": "2026-03-23T12:30:00Z",
+    "source_ip": "172.16.5.23",
+    "destination_ip": "192.168.1.20",
+    "alert_id": "300002",
+    "severity": "medium",
+    "category": "port_scan",
+    "description": "Nmap scan detected targeting multiple ports",
+    "ioc": ["ports: 22, 80, 443", "scan type: SYN"]
+  }
+]
