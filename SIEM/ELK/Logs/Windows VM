@@ -1,0 +1,34 @@
+# ==========================================
+# SOC LAB - MAP NETWORK DRIVE SCRIPT
+# Maps shared SOC logs folder to Z: drive
+# Run as Administrator
+# ==========================================
+
+# ---- CONFIG ----
+$DriveLetter = "Z:"
+$NetworkPath = "\\VBOXSVR\soc-logs"   # VirtualBox shared folder
+$Username = ""   # Leave empty if not required
+$Password = ""   # Leave empty if not required
+
+Write-Host "[+] Mapping network drive $DriveLetter to $NetworkPath..."
+
+# Remove existing mapping if it exists
+if (Get-PSDrive -Name $DriveLetter.TrimEnd(":") -ErrorAction SilentlyContinue) {
+    Write-Host "[!] Removing existing drive mapping..."
+    net use $DriveLetter /delete /y
+}
+
+# Map the drive
+if ($Username -ne "" -and $Password -ne "") {
+    net use $DriveLetter $NetworkPath /user:$Username $Password /persistent:yes
+} else {
+    net use $DriveLetter $NetworkPath /persistent:yes
+}
+
+# Verify mapping
+Start-Sleep -Seconds 2
+if (Test-Path "$DriveLetter\") {
+    Write-Host "[+] Drive mapped successfully to $DriveLetter"
+} else {
+    Write-Host "[!] Failed to map drive. Check shared folder settings."
+}
