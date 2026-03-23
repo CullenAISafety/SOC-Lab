@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2026-03-23T11:00:00Z",
+    "host": "LINUX-APP01",
+    "alert_id": "200001",
+    "severity": "high",
+    "category": "privilege_escalation",
+    "description": "User attempted sudo without authorization",
+    "ioc": ["sudo -l", "unknown user: hacker01"]
+  },
+  {
+    "timestamp": "2026-03-23T11:30:00Z",
+    "host": "LINUX-DB01",
+    "alert_id": "200002",
+    "severity": "medium",
+    "category": "process_anomaly",
+    "description": "Unexpected process execution detected",
+    "ioc": ["nc -e /bin/bash", "pid: 1234"]
+  }
+]
