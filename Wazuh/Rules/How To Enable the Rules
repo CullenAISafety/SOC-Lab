@@ -1,0 +1,1 @@
+docker cp rules/local_rules.xml wazuh-manager:/var/ossec/etc/rules/
