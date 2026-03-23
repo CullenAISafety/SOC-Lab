@@ -1,0 +1,2 @@
+chmod +x nmap_scan.sh
+./nmap_scan.sh
