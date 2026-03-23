@@ -1,0 +1,5 @@
+From: 
+SIEM/wazuh/
+
+Run:
+docker-compose -f wazuh-docker-compose.yml up -d
