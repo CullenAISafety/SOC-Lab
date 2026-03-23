@@ -1,0 +1,1 @@
+docker exec -it wazuh-manager /var/ossec/bin/manage_agents
