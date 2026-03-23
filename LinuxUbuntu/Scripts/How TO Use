@@ -1,0 +1,7 @@
+chmod +x generate_logs.sh simulate_attack.sh
+
+# Run baseline first
+sudo ./generate_logs.sh
+
+# Then simulate attack
+sudo ./simulate_attack.sh
