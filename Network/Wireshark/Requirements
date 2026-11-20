@@ -12,3 +12,9 @@
 # tshark --version
 # dumpcap --version
 # tshark -D
+
+
+git add Network/
+git add requirements.txt
+git commit -m "Integrate Wireshark network analysis into SOC-Lab"
+git push origin main
