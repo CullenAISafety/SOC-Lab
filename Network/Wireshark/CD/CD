@@ -1,0 +1,6 @@
+cd Network
+
+New-Item wireshark_soc.py -ItemType File
+New-Item README.md -ItemType File
+New-Item captures -ItemType Directory
+New-Item output -ItemType Directory
