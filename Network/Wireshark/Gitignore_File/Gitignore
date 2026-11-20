@@ -1,0 +1,12 @@
+# Wireshark captures and generated output
+Network/Wireshark/captures/*
+!Network/Wireshark/captures/.gitkeep
+
+Network/Wireshark/output/*
+!Network/Wireshark/output/.gitkeep
+
+*.pcap
+*.pcapng
+*.cap
+
+Alerts/wireshark_alerts.jsonl
