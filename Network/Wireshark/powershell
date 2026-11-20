@@ -1,0 +1,5 @@
+New-Item -ItemType Directory -Force -Path "Network/Wireshark/captures"
+New-Item -ItemType Directory -Force -Path "Network/Wireshark/output"
+
+New-Item -ItemType File -Force -Path "Network/Wireshark/captures/.gitkeep"
+New-Item -ItemType File -Force -Path "Network/Wireshark/output/.gitkeep"
