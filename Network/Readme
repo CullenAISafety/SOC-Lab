@@ -1,0 +1,99 @@
+
+# Wireshark SOC-Lab Integration
+
+## Overview
+
+This module integrates Wireshark and TShark into the SOC-Lab for network traffic monitoring, packet inspection, and security analysis.
+
+## Capabilities
+
+- Live network packet capture on Windows.
+- Offline PCAP and PCAPNG analysis.
+- TCP and UDP traffic inspection.
+- DNS query monitoring.
+- Identification of suspicious network behavior.
+- Detection of potential TCP SYN scanning activity.
+- CSV event reporting.
+- JSONL security alert generation.
+- Future integration with Wazuh and ELK.
+
+## Requirements
+
+- Windows 10 or Windows 11
+- Python 3.10+
+- Wireshark
+- TShark
+- Npcap for live packet capture
+
+Install Python requirements:
+
+```powershell
+pip install -r requirements.txt
+```
+
+Verify Wireshark:
+
+```powershell
+tshark --version
+dumpcap --version
+tshark -D
+```
+
+## Directory Structure
+
+```text
+Wireshark/
+├── README.md
+├── __init__.py
+├── requirements.txt
+├── wireshark_soc.py
+├── captures/
+└── output/
+```
+
+## Usage
+
+List available network interfaces:
+
+```powershell
+python Network/Wireshark/wireshark_soc.py interfaces
+```
+
+Start live monitoring:
+
+```powershell
+python Network/Wireshark/wireshark_soc.py live --interface 4
+```
+
+Analyze an existing PCAPNG:
+
+```powershell
+python Network/Wireshark/wireshark_soc.py analyze --pcap "C:\Captures\sample.pcapng"
+```
+
+Replace interface number 4 with the interface number shown by TShark.
+
+## Output
+
+- `captures/` stores local packet captures.
+- `output/` stores CSV traffic analysis.
+- `Alerts/wireshark_alerts.jsonl` stores candidate security alerts.
+
+## Security Notice
+
+Only capture traffic on networks and devices you own or are authorized to monitor.
+
+Packet captures can contain sensitive information. Do not commit raw PCAP or PCAPNG files to GitHub.
+
+Detection results are investigative indicators, not proof of malicious activity. Analyst validation is required.
+
+## Roadmap
+
+- [x] Define Wireshark integration architecture.
+- [ ] Configure Windows capture environment.
+- [ ] Implement live packet capture.
+- [ ] Implement offline PCAP analysis.
+- [ ] Add network threat detection.
+- [ ] Integrate alerts with Wazuh.
+- [ ] Integrate events with ELK.
+- [ ] Build SOC dashboard visualization.
